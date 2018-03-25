@@ -49,10 +49,10 @@ $(function(){
       var columnAddCard = $('<button class="column-add-card">Dodaj kartę</button>');
 
       // PODPINANIE ODPOWIEDNICH ZDARZEŃ POD WĘZŁY
-      columnDelete.click(function() {
+      columnDelete.on('click', function() {
         self.deleteColumn();
       });
-      columnAddCard.click(function(event) {
+      columnAddCard.on('click', function(event) {
         event.preventDefault();
         self.createCard(new Card(prompt("Wpisz nazwę karty")));
       });
