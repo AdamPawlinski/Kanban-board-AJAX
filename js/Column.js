@@ -1,42 +1,41 @@
 function Column(id, name) {
 	var self = this;
 
-	this.id = id;
-  this.name = name || 'No name given';
-	this.element = createColumn();
+	self.id = id;
+  self.name = name || 'No name given';
+	self.element = createColumn();
 
 	function createColumn() {
-		// TWORZENIE NOWYCH WĘZŁÓW
 		var column = $('<div class="column"></div>');
 		var columnTitle = $('<h2 class="column-title">' + self.name + '</h2>');
 		var columnCardList = $('<ul class="card-list"></ul>');
 		var columnDelete = $('<button class="btn-delete">x</button>');
 		var columnAddCard = $('<button class="column-add-card">Add card</button>');
 
-		// PODPINANIE ODPOWIEDNICH ZDARZEŃ POD WĘZŁY
 		columnDelete.on('click', function() {
 			self.deleteColumn();
 		});
 
 		columnAddCard.on('click', function(event) {
 			var cardName = prompt("Enter the name of the card");
+			if (cardName === null) {
+				return
+			}
 			event.preventDefault();
-			self.createCard(new Card(cardName));
 			$.ajax({
         url: baseUrl + '/card',
         method: 'POST',
         data: {
-					cardName,
+					name: cardName,
 	    		bootcamp_kanban_column_id: self.id
         },
-        success: function() {
+        success: function(response) {
 					var card = new Card(response.id, cardName);
 	        self.createCard(card);
         }
     	});
 		});
 
-			// KONSTRUOWANIE ELEMENTU KOLUMNY
 		column.append(columnTitle)
 			.append(columnDelete)
 			.append(columnAddCard)

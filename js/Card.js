@@ -1,4 +1,3 @@
-// KLASA KANBAN CARD
 function Card(id, name) {
 	var self = this;
 
@@ -14,11 +13,11 @@ function Card(id, name) {
 		cardDeleteBtn.click(function(){
 				self.removeCard();
 			})
-		};
 		card.append(cardDeleteBtn);
 		cardDescription.text(self.name);
 		card.append(cardDescription)
 		return card;
+	}
 }
 
 Card.prototype = {
@@ -28,7 +27,7 @@ Card.prototype = {
 			url: baseUrl + '/card/' + self.id,
 			method: 'DELETE',
 			success: function(response){
-				self.$element.remove();
+				self.element.remove();
 			}
 		})
 	}
