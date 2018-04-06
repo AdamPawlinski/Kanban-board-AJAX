@@ -11,14 +11,14 @@ function Column(id, name) {
 		var columnTitle = $('<h2 class="column-title">' + self.name + '</h2>');
 		var columnCardList = $('<ul class="card-list"></ul>');
 		var columnDelete = $('<button class="btn-delete">x</button>');
-		var columnAddCard = $('<button class="column-add-card">Dodaj kartę</button>');
+		var columnAddCard = $('<button class="column-add-card">Add card</button>');
 
 		// PODPINANIE ODPOWIEDNICH ZDARZEŃ POD WĘZŁY
 		columnDelete.on('click', function() {
 			self.deleteColumn();
 		});
 
-		$columnAddCard.on('click', function(event) {
+		columnAddCard.on('click', function(event) {
 			var cardName = prompt("Enter the name of the card");
 			event.preventDefault();
 			self.createCard(new Card(cardName));
@@ -43,7 +43,7 @@ function Column(id, name) {
 			.append(columnCardList);
 			return column;
 		}
-	}
+}
 Column.prototype = {
 	createCard: function(card) {
 	  this.element.children('ul').append(card.element);
