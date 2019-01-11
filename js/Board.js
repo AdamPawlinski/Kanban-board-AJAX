@@ -1,5 +1,5 @@
 var board = {
-	name: 'Tablica Kanban',
+	name: 'Kanban Board',
 	createColumn: function(column) {
 	  this.element.append(column.element);
 	  initSortable();
@@ -13,14 +13,14 @@ $('.create-column').on('click', function() {
 		return
 	}
 	$.ajax({
-		url: baseUrl + '/column',
+		url: prefixURL + baseUrl + '/column',
 		method: 'POST',
 		data: {
-            	name: columnName
-    		},
+      name: columnName
+    },
 		success: function(response) {
-		var column = new Column(response.id, columnName);
-		board.createColumn(column);
+			var column = new Column(response.id, columnName);
+			board.createColumn(column);
 		}
 	});
 });

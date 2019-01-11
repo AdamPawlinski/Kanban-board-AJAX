@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css?family=Share+Tech|Ubuntu');
+
+$font-main: 'Ubuntu', sans-serif;
+$font-header: 'Share Tech', sans-serif;
+$white: #FFF;
+$black: #000;
+$background: #cacaca;
+$background-header: #e9ecf1;
+$background-opacity: rgba(0,0,0,.18);
+$background-card: rgb(164, 181, 236);
+$box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+
+@mixin flex-direction($direction) {
+  -webkit-box-direction: $direction;
+      -ms-flex-direction: $direction;
+          flex-direction: $direction;
+}
+@mixin justify-content($justify) {
+  -webkit-box-pack: $justify;
+      -ms-flex-pack: $justify;
+          justify-content: $justify;
+}
+@mixin align-items($align) {
+-webkit-box-align: $align;
+    -ms-flex-align: $align;
+        align-items: $align;
+}
+
+@mixin flex-wrap($wrap) {
+  -ms-flex-wrap: $wrap;
+      flex-wrap: $wrap;
+}
+
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+        box-shadow: $shadow;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.row-center {
+  -webkit-box-orient: horizontal;
+  @include flex-direction(row);
+  @include align-items(center);
+}
+
+body {
+  font-size: 18px;
+  width: 800px;
+  margin: 50px auto;
+  background-color: $background;
+  font-family: 'Ubuntu';
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  @include box-shadow($box-shadow);
+  background-color: $white;
+  color: $black;
+  border: none;
+  border-radius: 3%;
+  margin: 0 .5vh;
+}
+
+button:hover {
+  background-color: $black;
+  color: $white;
+}
+
+.head {
+  @include justify-content(space-between);
+  display: inline;
+  flex-direction: row;
+}
+
+.edit-card {  
+  min-width: 5vh;
+  padding: 0 .5vh;  
+}
+
+.button-del {
+  min-height: 2vh;
+  min-width: 2vh;
+  padding: 0 .5vh;
+}
+
+.kanban-head {
+  @extend .flex;
+  @extend .row-center;
+  @include justify-content(space-between);
+  @include box-shadow($box-shadow);
+  background-color: $background-header;  
+  max-height: 15vh;
+  color: $black;
+  padding: 3vh;
+  font-family: 'Share Tech';
+  font-size: 1.3em;
+  border-radius: 20px;
+}
+
+.head-nav {
+  @extend .flex;
+  @extend .row-center;
+  @include justify-content(flex-end);
+}
+
+
+.head-color {
+  @extend .flex;
+  @extend .row-center;
+  width: 20vh;
+  @include justify-content(center); 
+  border-radius: 5px;
+  background-color: $background-opacity;
+  padding: 1vh;
+  span {
+    font-size: .5em;
+  }
+}
+
+.board {
+  @extend .flex;
+  -webkit-box-orient: vertical;
+  @include flex-direction(column);
+}
+
+.create-column {
+  @extend .flex;
+  @include flex-wrap(no-wrap);
+  min-height: 5vh;
+}
+
+.column-container {
+  @extend .flex;
+  -webkit-box-orient: horizontal;
+  @include flex-direction(row);
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+}
+
+.column {
+  @extend .flex;
+  -webkit-box-orient: vertical;
+  @include flex-direction(column);
+  @include justify-content(flex-start);
+  @include box-shadow(inset $box-shadow);
+  margin: 5vh 5vh;
+  min-width: 25vh;    
+  border-radius: 2%;
+  background: $background-opacity; 
+  padding: 3vh;
+}
+
+.column-head {
+  @extend .flex;
+  @extend .row-center;
+  @include justify-content(space-between);
+  font-size: .9em;
+}
+
+.column-title {
+  min-height: 10vh;
+  min-width: 15vh;
+  margin-right: auto;
+}
+
+.column-card-list {
+  @extend .flex;
+  -webkit-box-orient: vertical;
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  padding-left: 0;
+  min-height: 20vh;
+}
+
+.card {
+  @extend .flex;
+  -webkit-box-orient: vertical;
+  @include flex-direction(column);
+  @include justify-content(flex-end);
+  @include box-shadow($box-shadow);
+  background-color: $background-card;  
+  border-radius: 3%;
+  padding: 2vh;
+  font-size: .7em;
+  width: 18vh;
+  margin-bottom: 2vh;
+  overflow-x: auto;
+}
+
+.button-del {
+  @extend .button-del;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  @include justify-content(flex-end);
+}
+
+.button-del-card {
+  @include justify-content(flex-end);
+  @extend .button-del;
+}
+
+.button-add-card {
+  @extend .flex;
+  @include justify-content(center);
+  min-width: 10vh;
+  padding: 1vh 1vh;
+}
+
+.card-placeholder {
+  @include box-shadow(inset $box-shadow);
+  background: $background-opacity;  
+}
