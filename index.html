@@ -6,13 +6,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<section id="board" class="board">
-      <header class="kanban-head"> 
-          <h1>Kanban board</h1>
-          <nav class="head-nav">
-                <button class="create-column">Add column</button>  
-          </nav>
-      </header>	  
+    <header class="kanban-head"> 
+        <h1><a href="#">Kanban board</a></h1>
+        <nav class="head-nav">
+            <button class="dropdown-nav">...</button>
+            <ul class="dropdown-container">
+                <li class="dropdown-list" id="create-column"><a class="dropdown-link create-column" href="#">Add column</a></li>
+                <li class="dropdown-list"><a class="dropdown-link" href="#">Color picker</a></li>
+            </ul>             
+        </nav>
+    </header>
+	<section id="board" class="board">      	  
 	  <div class="column-container"></div>
 	</section>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
