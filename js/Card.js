@@ -8,24 +8,50 @@ function Card(id, name) {
 	function createCard() {
 		var card = $('<li class="card"></li>');
 		var cardHeader = $('<header class="head"><header>');
-		var cardDeleteBtn = $('<button class="button-del button-del-card">x</button>');
-		var cardChange = $('<button class="edit-card">edit</button>');
+		var cardNav = $('<nav class="head-nav card-nav"></nav>');
+		var cardButton = $('<button class="dropdown-btn dropdown-card" id="drop-card-btn">...</button>');
+		var cardNavContainer = $('<ul class="dropdown-container card-nav-container" id="drop-card-cont"></ul>');
+		var cardDeleteBtn = $('<li class="dropdown-list button-del button-del-card"><a class="dropdown-link" href="#">delete</a></li>');
+		var cardChange = $('<li class="dropdown-list edit-card"><a class="dropdown-link" href="#">edit</a></li>');
+		var cardColor = $('<li class="dropdown-list color-card"><span class="dropdown-link">card color<input type="color" id="card-color" value></span></li>');
 		var cardDescription = $('<p class="card-description"></p>');
 
 		cardDeleteBtn.on('click', function(){
 			self.removeCard();
-		})
+		});
 		cardChange.on('click', function() {
 			self.changeCard();
-		})
+		});
 
-		cardHeader.append(cardChange)
-				  .append(cardDeleteBtn);
+		dropdown(cardButton, cardNavContainer);
 
-		card.append(cardDeleteBtn);
-		card.append(cardChange);
+		cardColor.on('change', function() {
+			var color = $('#card-color').val();
+			card.css('background-color', color);
+		});
+
+		card.hover(
+			function(){
+				cardNav.css('visibility', 'visible');				
+			},
+			function(){
+				cardNav.css('visibility', 'hidden');
+			}
+		);
+
+		cardNavContainer.append(cardChange)
+						.append(cardColor)
+						.append(cardDeleteBtn);
+
+		cardNav.append(cardButton)
+				.append(cardNavContainer);
+
+		cardHeader.append(cardNav);
+		
 		cardDescription.text(self.name);
-		card.append(cardDescription)
+		card.append(cardHeader)
+			.append(cardDescription);
+
 		return card;
 	}
 }

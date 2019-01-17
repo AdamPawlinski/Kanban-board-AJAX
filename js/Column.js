@@ -10,9 +10,16 @@ function Column(id, name) {
 		var columnTitle = $('<h2 class="column-title">' + self.name + '</h2>');
 		var columnCardList = $('<ul class="column-card-list"></ul>');
 		var columnHeader = $('<header class="head column-head"></header>');
-		var columnDelete = $('<button class="button-del">x</button>');
-		var columnChange = $('<button class="edit-col">edit</button>');
-		var columnAddCard = $('<button class="button-add-card">Add card</button>');
+		var columnNav = $('<nav class="head-nav column-nav"></nav>');
+		var columnButton = $('<button class="dropdown-btn dropdown-col" id="drop-col-btn">...</button>')
+		var columnNavContainer = $('<ul class="dropdown-container column-nav-container" id ="drop-col-cont"></ul>')
+		var columnDelete = $('<li class="dropdown-list del-col"><a class="dropdown-link" href="#">delete</a></li>');
+		var columnChange = $('<li class="dropdown-list edit-col"><a class="dropdown-link" href="#">edit column</a></li>');
+		var columnAddCard = $('<li class="dropdown-list add-card"><a class="dropdown-link" href="#">Add card</a></li>');
+		var columnColor = $('<li class="dropdown-list color-col"></li>');
+		var columnColorPicker = $('<span class="dropdown-link">column color<input type="color" id="col-color" value></span>');
+
+		dropdown(columnButton, columnNavContainer);		
 
 		columnDelete.on('click', function() {
 			self.deleteColumn();
@@ -20,7 +27,14 @@ function Column(id, name) {
 
 		columnChange.on('click', function() {
 			self.columnChange();
-		})
+		});
+
+		columnColor.on('click', function(){
+			columnColorPicker.on('change', function() {
+				var color = $('#col-color').val();
+				column.css('background-color', color);
+			});
+		});
 
 		columnAddCard.on('click', function(event) {
 			var cardName = prompt("Enter the name of the card");
@@ -42,31 +56,41 @@ function Column(id, name) {
 			});
 		});
 
-		columnHeader.append(columnChange)
-					.append(columnAddCard)
-					.append(columnDelete);
+		columnColor.append(columnColorPicker);
 
-		column.append(columnTitle)
-			.append(columnHeader)
+		columnNavContainer.append(columnAddCard)
+						.append(columnChange)
+						.append(columnColor)
+						.append(columnDelete);
+
+		columnNav.append(columnButton)
+				 .append(columnNavContainer);
+
+		columnHeader.append(columnTitle)
+					.append(columnNav);					
+
+		column.append(columnHeader)
 			.append(columnCardList);
-			return column;
+		
+		return column;
 		}
 }
 Column.prototype = {
 	createCard: function(card) {
 	  this.element.children('ul').append(card.element);
 	},
-	deleteColumn: function() {
-    var self = this;
-    $.ajax({
-      url: prefixURL + baseUrl + '/column/' + self.id,
-      method: 'DELETE',
-      success: function(response){
-      self.element.remove();
-      }
-    });
+	deleteColumn: function() {		
+		var self = this;
+		if (confirm("Do you really want to delete the " + self.name + " column?"));
+		$.ajax({
+		url: prefixURL + baseUrl + '/column/' + self.id,
+		method: 'DELETE',
+		success: function(response){
+		self.element.remove();
+		}
+		});
 	 },
-	 columnChange: function() {
+	columnChange: function() {
 		var columnName = prompt("Enter the new name of the column");
 		if (columnName === null) {
 			return

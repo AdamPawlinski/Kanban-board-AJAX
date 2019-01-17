@@ -66,7 +66,8 @@ button {
   color: $black;
   border: none;
   border-radius: 3%;
-  margin: 0 .5vh;
+  margin: 0 .2rem;
+  text-transform: uppercase;
 }
 
 button:hover {
@@ -79,26 +80,21 @@ a {
   color: $black;
 }
 
+input[type=color] {
+  width: 0;
+  height: 0;
+  z-index: 0;
+}
+
 .head {
+  @extend .flex;
   @include justify-content(space-between);
-  display: inline;
   flex-direction: row;
 }
 
-.edit-card {  
-  min-width: 5vh;
-  padding: 0 .5vh;  
-}
-
-.button-del {
-  min-height: 2vh;
-  min-width: 2vh;
-  padding: 0 .5vh;
-}
-
 .kanban-head {
-  @extend .flex;
   @extend .row-center;
+  @extend .flex;
   @include justify-content(space-between);
   @include box-shadow($box-shadow);
   background-color: $background-header;  
@@ -172,18 +168,18 @@ a {
   text-align: center;
 }
 
-.dropdown-nav {
+.dropdown-btn {
   width: 100%;
   margin: 0;
+  height: auto;
 }
 
 .dropdown-link {
-  font-size: .6rem;
-  font-weight: normal;
-  text-transform: uppercase;
   @extend .flex;  
   justify-content: center;
   align-items: center;
+  font-size: .6rem;
+  font-weight: normal;  
   line-height: 1.5rem;  
 }
 
@@ -215,17 +211,33 @@ a {
   padding: .4rem;
 }
 
-.column-head {
+.column-head {  
   @extend .flex;
-  @extend .row-center;
-  @include justify-content(space-between);
-  font-size: .9em;
+  @extend .row-center; 
+  justify-content: space-between; 
+  font-size: .8rem;  
 }
 
 .column-title {
-  min-height: 10vh;
-  min-width: 15vh;
-  margin-right: auto;
+  @extend .flex;
+  display: inline;
+  line-height: 3rem;
+  min-width: 2rem;
+}
+
+.column-nav {
+  @extend .flex;
+  display: inline-block;
+  max-width: 6rem;
+  right: 0;  
+}
+
+.dropdown-col {
+  
+}
+
+.column-nav-container {
+  
 }
 
 .column-card-list {
@@ -238,6 +250,12 @@ a {
   min-height: 20vh;
 }
 
+// .del-col {  
+//   -ms-flex-item-align: start;
+//       align-self: flex-start;
+//   @include justify-content(flex-end);
+// }
+
 .card {
   @extend .flex;
   -webkit-box-orient: vertical;
@@ -246,31 +264,36 @@ a {
   @include box-shadow($box-shadow);
   background-color: $background-card;  
   border-radius: 3%;
-  padding: 2vh;
-  font-size: .7em;
-  width: 18vh;
-  margin-bottom: 2vh;
+  padding: 1rem;
+  font-size: .7rem;
+  width: 80%;
+  margin-bottom: 1rem;
   overflow-x: auto;
 }
 
-.button-del {
-  @extend .button-del;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  @include justify-content(flex-end);
+.card-nav {
+  visibility: hidden;
+  right: 0;
 }
 
-.button-del-card {
-  @include justify-content(flex-end);
-  @extend .button-del;
-}
+// .button-del-card {
+//   @include justify-content(flex-end);  
+//   min-height: 2vh;
+//   min-width: 2vh;
+//   padding: 0 .5vh;
+// }
 
-.button-add-card {
-  @extend .flex;
-  @include justify-content(center);
-  min-width: 10vh;
-  padding: 1vh 1vh;
-}
+// .edit-card {  
+//   min-width: 5vh;
+//   padding: 0 .5vh;  
+// }
+
+// .add-card {
+//   @extend .flex;
+//   @include justify-content(center);
+//   min-width: 10vh;
+//   padding: 1vh 1vh;
+// }
 
 .card-placeholder {
   @include box-shadow(inset $box-shadow);

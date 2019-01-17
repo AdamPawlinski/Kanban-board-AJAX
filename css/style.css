@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Share+Tech|Ubuntu");
-.flex, .kanban-head, .kanban-head h1, .head-nav, .head-color, .board, .dropdown-link, .column-container, .column, .column-head, .column-card-list, .card, .button-add-card {
+.flex, .head, .kanban-head, .kanban-head h1, .head-nav, .head-color, .board, .dropdown-link, .column-container, .column, .column-head, .column-title, .column-nav, .column-card-list, .card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
@@ -30,7 +30,8 @@ button {
   color: #000;
   border: none;
   border-radius: 3%;
-  margin: 0 .5vh; }
+  margin: 0 .2rem;
+  text-transform: uppercase; }
 
 button:hover {
   background-color: #000;
@@ -40,21 +41,16 @@ a {
   text-decoration: none;
   color: #000; }
 
+input[type=color] {
+  width: 0;
+  height: 0;
+  z-index: 0; }
+
 .head {
   -webkit-box-pack: space-between;
   -ms-flex-pack: space-between;
   justify-content: space-between;
-  display: inline;
   flex-direction: row; }
-
-.edit-card {
-  min-width: 5vh;
-  padding: 0 .5vh; }
-
-.button-del, .button-del-card {
-  min-height: 2vh;
-  min-width: 2vh;
-  padding: 0 .5vh; }
 
 .kanban-head {
   -webkit-box-pack: space-between;
@@ -124,16 +120,16 @@ a {
   background-color: rgba(255, 255, 255, 0.85);
   text-align: center; }
 
-.dropdown-nav {
+.dropdown-btn {
   width: 100%;
-  margin: 0; }
+  margin: 0;
+  height: auto; }
 
 .dropdown-link {
-  font-size: .6rem;
-  font-weight: normal;
-  text-transform: uppercase;
   justify-content: center;
   align-items: center;
+  font-size: .6rem;
+  font-weight: normal;
   line-height: 1.5rem; }
 
 .dropdown-list:hover .dropdown-link,
@@ -170,15 +166,18 @@ a {
   padding: .4rem; }
 
 .column-head {
-  -webkit-box-pack: space-between;
-  -ms-flex-pack: space-between;
   justify-content: space-between;
-  font-size: .9em; }
+  font-size: .8rem; }
 
 .column-title {
-  min-height: 10vh;
-  min-width: 15vh;
-  margin-right: auto; }
+  display: inline;
+  line-height: 3rem;
+  min-width: 2rem; }
+
+.column-nav {
+  display: inline-block;
+  max-width: 6rem;
+  right: 0; }
 
 .column-card-list {
   -webkit-box-orient: vertical;
@@ -206,30 +205,15 @@ a {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
   background-color: #a4b5ec;
   border-radius: 3%;
-  padding: 2vh;
-  font-size: .7em;
-  width: 18vh;
-  margin-bottom: 2vh;
+  padding: 1rem;
+  font-size: .7rem;
+  width: 80%;
+  margin-bottom: 1rem;
   overflow-x: auto; }
 
-.button-del, .button-del-card {
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  -webkit-box-pack: flex-end;
-  -ms-flex-pack: flex-end;
-  justify-content: flex-end; }
-
-.button-del-card {
-  -webkit-box-pack: flex-end;
-  -ms-flex-pack: flex-end;
-  justify-content: flex-end; }
-
-.button-add-card {
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  min-width: 10vh;
-  padding: 1vh 1vh; }
+.card-nav {
+  visibility: hidden;
+  right: 0; }
 
 .card-placeholder {
   -webkit-box-shadow: inset 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);

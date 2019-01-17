@@ -4,6 +4,8 @@ var myHeaders = {
   'X-Client-Id': '3026',
   'X-Auth-Token': 'ba6a0a14a3cf22cde1f92f0d07d71ae1'
 };
+var dropdownBtn = $('#drop-btn');
+var dropdownContainer = $('#drop-cont');
 
 $.ajaxSetup({
 	headers: myHeaders
@@ -31,3 +33,18 @@ function setupCards(col, cards) {
     col.createCard(cardObj);
   })
 }
+
+// dropdown menu
+
+function dropdown(btn, container) {
+	btn.mouseenter(function(){
+		$(this).addClass('show');
+		container.css('display', 'block');
+	});
+	container.mouseleave(function(){
+		$(this).removeClass('show');
+		container.css('display', 'none');
+	});
+};
+
+dropdown(dropdownBtn, dropdownContainer);

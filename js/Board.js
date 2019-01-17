@@ -25,25 +25,17 @@ $('#create-column').on('click', function() {
 	});
 });
 
-// dropdown menu
-
-$('.dropdown-nav').mouseenter(function(){
-	$(this).addClass('show');
-	$('.dropdown-container').css('display', 'block');
-	console.dir(this);
-});
-$('.dropdown-container').mouseleave(function(){
-	$(this).removeClass('show');
-	$('.dropdown-container').css('display', 'none');
-});
-
 function initSortable() {
     $('.column-card-list').sortable({
       connectWith: '.column-card-list',
-      placeholder: '.card-placeholder'
+			placeholder: 'card-placeholder',
+			dropOnEmpty: true,
+     	forcePlaceholderSize: true
 		}).disableSelection();
-		$('.column-container').sortable({
-      connectWith: '.column-container',
-      placeholder: '.card-placeholder'
+		$('#board .column-container').sortable({
+      connectWith: '#board .column-container',
+			placeholder: 'card-placeholder',
+			dropOnEmpty: true,
+    	forcePlaceholderSize: true
 		}).disableSelection();
   }
