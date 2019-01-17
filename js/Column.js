@@ -17,7 +17,7 @@ function Column(id, name) {
 		var columnChange = $('<li class="dropdown-list edit-col"><a class="dropdown-link" href="#">edit column</a></li>');
 		var columnAddCard = $('<li class="dropdown-list add-card"><a class="dropdown-link" href="#">Add card</a></li>');
 		var columnColor = $('<li class="dropdown-list color-col"></li>');
-		var columnColorPicker = $('<span class="dropdown-link">column color<input type="color" id="col-color" value></span>');
+		var columnColorPicker = $('<label class="dropdown-link">column color<input type="color" id="col-color" value></label>');
 
 		dropdown(columnButton, columnNavContainer);		
 
@@ -29,12 +29,11 @@ function Column(id, name) {
 			self.columnChange();
 		});
 
-		columnColor.on('click', function(){
-			columnColorPicker.on('change', function() {
-				var color = $('#col-color').val();
-				column.css('background-color', color);
-			});
+		columnColor.on('change', function() {
+			var color = $('#col-color').val();
+			column.css('background-color', color);
 		});
+		
 
 		columnAddCard.on('click', function(event) {
 			var cardName = prompt("Enter the name of the card");
@@ -81,7 +80,7 @@ Column.prototype = {
 	},
 	deleteColumn: function() {		
 		var self = this;
-		if (confirm("Do you really want to delete the " + self.name + " column?"));
+		if (confirm("Do you really want to delete the " + self.name + " column?"))
 		$.ajax({
 		url: prefixURL + baseUrl + '/column/' + self.id,
 		method: 'DELETE',

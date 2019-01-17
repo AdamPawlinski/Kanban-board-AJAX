@@ -53,7 +53,7 @@ body {
   max-width: 100%;
   margin: 0 auto;
   background-color: $background;
-  font-family: 'Ubuntu';
+  font-family: $font-main;
 }
 
 ul {
@@ -68,6 +68,7 @@ button {
   border-radius: 3%;
   margin: 0 .2rem;
   text-transform: uppercase;
+  font-family: $font-header;
 }
 
 button:hover {
@@ -80,10 +81,17 @@ a {
   color: $black;
 }
 
+p {
+  max-width: 20vw;
+  overflow-x: auto;
+}
+
 input[type=color] {
-  width: 0;
-  height: 0;
-  z-index: 0;
+  display: none;
+}
+
+select {
+  appearance: none;
 }
 
 .head {
@@ -168,10 +176,21 @@ input[type=color] {
   text-align: center;
 }
 
+.dropdown-container-level2 {
+  display: none;
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+}
+
 .dropdown-btn {
   width: 100%;
   margin: 0;
-  height: auto;
+}
+
+.dropdown-link {
+ text-transform: uppercase;
+ font-family: $font-header;
 }
 
 .dropdown-link {
@@ -190,6 +209,8 @@ input[type=color] {
   cursor: pointer;
 }
 
+//columns
+
 .column-container {
   @extend .flex;
   -webkit-box-orient: horizontal;
@@ -205,7 +226,7 @@ input[type=color] {
   @include justify-content(flex-start);
   @include box-shadow(inset $box-shadow);
   margin: 5vh 5vw;
-  min-width: 15vw;    
+  min-width: 20vw;    
   border-radius: 2%;
   background: $background-opacity; 
   padding: .4rem;
@@ -232,14 +253,6 @@ input[type=color] {
   right: 0;  
 }
 
-.dropdown-col {
-  
-}
-
-.column-nav-container {
-  
-}
-
 .column-card-list {
   @extend .flex;
   -webkit-box-orient: vertical;
@@ -250,11 +263,7 @@ input[type=color] {
   min-height: 20vh;
 }
 
-// .del-col {  
-//   -ms-flex-item-align: start;
-//       align-self: flex-start;
-//   @include justify-content(flex-end);
-// }
+// cards
 
 .card {
   @extend .flex;
@@ -267,33 +276,13 @@ input[type=color] {
   padding: 1rem;
   font-size: .7rem;
   width: 80%;
-  margin-bottom: 1rem;
-  overflow-x: auto;
+  margin-bottom: 1rem; 
 }
 
 .card-nav {
   visibility: hidden;
   right: 0;
 }
-
-// .button-del-card {
-//   @include justify-content(flex-end);  
-//   min-height: 2vh;
-//   min-width: 2vh;
-//   padding: 0 .5vh;
-// }
-
-// .edit-card {  
-//   min-width: 5vh;
-//   padding: 0 .5vh;  
-// }
-
-// .add-card {
-//   @extend .flex;
-//   @include justify-content(center);
-//   min-width: 10vh;
-//   padding: 1vh 1vh;
-// }
 
 .card-placeholder {
   @include box-shadow(inset $box-shadow);

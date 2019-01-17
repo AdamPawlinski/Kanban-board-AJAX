@@ -5,7 +5,9 @@ var myHeaders = {
   'X-Auth-Token': 'ba6a0a14a3cf22cde1f92f0d07d71ae1'
 };
 var dropdownBtn = $('#drop-btn');
-var dropdownContainer = $('#drop-cont');
+var dropdownContainer = $('ul:first');
+var background = $('#background');
+var chooseBckgrnd = $('#background-pick');
 
 $.ajaxSetup({
 	headers: myHeaders
@@ -34,17 +36,36 @@ function setupCards(col, cards) {
   })
 }
 
+chooseBckgrnd.on('click', function addBackground() {
+  switch (this.value) {
+    case mountain:
+      $('.column-container').css('background', 'url(./resources/mountains.jpg)');
+      break
+    case sea:
+      $('.column-container').css('background', 'url(./resources/mountains.jpg)');
+      break
+    case city:
+      $('.column-container').css('background', 'url(./resources/mountains.jpg)');
+      break
+    default:
+      ('.column-container').css('background', 'rgba(0,0,0,.18)');
+  }     
+});
+
 // dropdown menu
 
 function dropdown(btn, container) {
 	btn.mouseenter(function(){
-		$(this).addClass('show');
 		container.css('display', 'block');
 	});
 	container.mouseleave(function(){
-		$(this).removeClass('show');
 		container.css('display', 'none');
-	});
+  });
+  if (background) {
+    background.mouseenter(function(){
+      $('#background-pick').css('display', 'block');
+    });
+  };
 };
 
 dropdown(dropdownBtn, dropdownContainer);
