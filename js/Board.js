@@ -30,7 +30,8 @@ function initSortable() {
       connectWith: '.column-card-list',
 			placeholder: 'card-placeholder',
 			dropOnEmpty: true,
-     	forcePlaceholderSize: true
+			forcePlaceholderSize: true,
+			revert: true		
 		}).disableSelection();
 		$('#board .column-container').sortable({
       connectWith: '#board .column-container',

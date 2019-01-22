@@ -81,6 +81,11 @@ a {
   color: $black;
 }
 
+// a:hover {
+//   color: $white;
+//   background-color: $black;
+// }
+
 p {
   max-width: 20vw;
   overflow-x: auto;
@@ -117,7 +122,8 @@ select {
   width: 100%;
 }
 
-.kanban-head h1 {
+.kanban-head h1,
+.kanban-head h1:hover {
   @extend .flex;
   justify-content: center;
   font-size: .8rem;   
@@ -148,7 +154,7 @@ select {
   @extend .flex;
   -webkit-box-orient: vertical;
   @include flex-direction(column);
-  margin: 2rem auto;
+  margin: 2rem auto 0 auto;
 }
 
 //dropdown menu 
@@ -161,7 +167,7 @@ select {
   font-weight: bold;
   position: relative;
   right: 20%;
-  width: 4rem;
+  min-width: 5.5rem;    
 }
 
 .dropdown-container {
@@ -179,18 +185,18 @@ select {
 .dropdown-container-level2 {
   display: none;
   position: absolute;
-  left: 1.5rem;
+  left: 3rem;
   top: 1.5rem;
+  width: 80%;  
 }
 
 .dropdown-btn {
   width: 100%;
-  margin: 0;
+  margin: 0;  
 }
 
-.dropdown-link {
- text-transform: uppercase;
- font-family: $font-header;
+.dropdown-col {
+  z-index: 1;
 }
 
 .dropdown-link {
@@ -199,11 +205,30 @@ select {
   align-items: center;
   font-size: .6rem;
   font-weight: normal;  
-  line-height: 1.5rem;  
+  line-height: 1.5rem; 
+  text-transform: uppercase;
+  font-family: $font-header; 
 }
 
 .dropdown-list:hover .dropdown-link,
 .dropdown-list:hover {
+  background-color: $black;
+  color: $white;
+  cursor: pointer;
+}
+
+.dropdown-list:hover .dropdown-link-background {
+  background-color: $white;
+  color: $black;
+  z-index: 10;
+}
+
+.dropdown-link-background {
+  @extend .dropdown-link;  
+}
+
+.dropdown-list .dropdown-container-level2 .dropdown-link-background:hover,
+.dropdown-list .dropdown-container-level2 .dropdown-link-background:hover a {
   background-color: $black;
   color: $white;
   cursor: pointer;
@@ -217,6 +242,7 @@ select {
   @include flex-direction(row);
   @include flex-wrap(wrap);
   @include justify-content(center);
+  height: 100vh;  
 }
 
 .column {

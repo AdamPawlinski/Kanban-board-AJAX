@@ -5,9 +5,12 @@ var myHeaders = {
   'X-Auth-Token': 'ba6a0a14a3cf22cde1f92f0d07d71ae1'
 };
 var dropdownBtn = $('#drop-btn');
-var dropdownContainer = $('ul:first');
-var background = $('#background');
-var chooseBckgrnd = $('#background-pick');
+var dropdownContainer = $('#drop-cont');
+var navContainer = $('.head-nav');
+var dropBckgrnd = $('#drop-background-btn');
+var dropBckgrndContainer = $('#drop-background-list');
+var navDropBckgrnd = $('#drop-background');
+var chooseBckgrnd = $('.choose-bckgrnd');
 
 $.ajaxSetup({
 	headers: myHeaders
@@ -37,35 +40,32 @@ function setupCards(col, cards) {
 }
 
 chooseBckgrnd.on('click', function addBackground() {
-  switch (this.value) {
-    case mountain:
-      $('.column-container').css('background', 'url(./resources/mountains.jpg)');
+  console.log($(this).data('back'));
+  switch ($(this).data('back')) {
+    case 'mountain':
+      $('body').css('background', 'url(./resources/mountains.jpg) no-repeat center fixed');
       break
-    case sea:
-      $('.column-container').css('background', 'url(./resources/mountains.jpg)');
+    case 'sea':
+      $('body').css('background', 'url(./resources/sea.jpg) no-repeat center fixed');
       break
-    case city:
-      $('.column-container').css('background', 'url(./resources/mountains.jpg)');
+    case 'city':
+      $('body').css('background', 'url(./resources/city.jpg) no-repeat center fixed');
       break
     default:
-      ('.column-container').css('background', 'rgba(0,0,0,.18)');
+      ('body').css('background', 'rgba(0,0,0,.18)');
   }     
 });
 
 // dropdown menu
 
-function dropdown(btn, container) {
+function dropdown(btn, container, nav) {
 	btn.mouseenter(function(){
 		container.css('display', 'block');
 	});
-	container.mouseleave(function(){
+	$(nav).mouseleave(function(){
 		container.css('display', 'none');
-  });
-  if (background) {
-    background.mouseenter(function(){
-      $('#background-pick').css('display', 'block');
-    });
-  };
+  });  
 };
 
-dropdown(dropdownBtn, dropdownContainer);
+dropdown(dropdownBtn, dropdownContainer, navContainer);
+dropdown(dropBckgrnd, dropBckgrndContainer, navDropBckgrnd);

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Share+Tech|Ubuntu");
-.flex, .head, .kanban-head, .kanban-head h1, .head-nav, .head-color, .board, .dropdown-link, .column-container, .column, .column-head, .column-title, .column-nav, .column-card-list, .card {
+.flex, .head, .kanban-head, .kanban-head h1,
+.kanban-head h1:hover, .head-nav, .head-color, .board, .dropdown-link, .dropdown-link-background, .column-container, .column, .column-head, .column-title, .column-nav, .column-card-list, .card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
@@ -75,7 +76,8 @@ select {
   margin: -2rem auto 0 auto;
   width: 100%; }
 
-.kanban-head h1 {
+.kanban-head h1,
+.kanban-head h1:hover {
   justify-content: center;
   font-size: .8rem;
   color: #000;
@@ -102,7 +104,7 @@ select {
   -webkit-box-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  margin: 2rem auto; }
+  margin: 2rem auto 0 auto; }
 
 .head-nav {
   display: flex;
@@ -112,7 +114,7 @@ select {
   font-weight: bold;
   position: relative;
   right: 20%;
-  width: 4rem; }
+  min-width: 5.5rem; }
 
 .dropdown-container {
   -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
@@ -129,26 +131,39 @@ select {
 .dropdown-container-level2 {
   display: none;
   position: absolute;
-  left: 1.5rem;
-  top: 1.5rem; }
+  left: 3rem;
+  top: 1.5rem;
+  width: 80%; }
 
 .dropdown-btn {
   width: 100%;
   margin: 0; }
 
-.dropdown-link {
-  text-transform: uppercase;
-  font-family: "Share Tech", sans-serif; }
+.dropdown-col {
+  z-index: 1; }
 
-.dropdown-link {
+.dropdown-link, .dropdown-link-background {
   justify-content: center;
   align-items: center;
   font-size: .6rem;
   font-weight: normal;
-  line-height: 1.5rem; }
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  font-family: "Share Tech", sans-serif; }
 
-.dropdown-list:hover .dropdown-link,
+.dropdown-list:hover .dropdown-link, .dropdown-list:hover .dropdown-link-background,
 .dropdown-list:hover {
+  background-color: #000;
+  color: #FFF;
+  cursor: pointer; }
+
+.dropdown-list:hover .dropdown-link-background {
+  background-color: #FFF;
+  color: #000;
+  z-index: 10; }
+
+.dropdown-list .dropdown-container-level2 .dropdown-link-background:hover,
+.dropdown-list .dropdown-container-level2 .dropdown-link-background:hover a {
   background-color: #000;
   color: #FFF;
   cursor: pointer; }
@@ -162,7 +177,8 @@ select {
   flex-wrap: wrap;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center; }
+  justify-content: center;
+  height: 100vh; }
 
 .column {
   -webkit-box-orient: vertical;

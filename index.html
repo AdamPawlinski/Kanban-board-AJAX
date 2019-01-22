@@ -12,12 +12,12 @@
             <button class="dropdown-btn" id="drop-btn">...</button>
             <ul class="dropdown-container" id="drop-cont">
                 <li class="dropdown-list" id="create-column"><a class="dropdown-link create-column" href="#">Add column</a></li>
-                <li class="dropdown-list"  id="background"><label class="dropdown-link">Background picker</label>
-                    <select class="dropdown-container-level2" id="background-pick">
-                        <option class="dropdown-link choose-bckgrnd" value="mountain">Mountain</option>
-                        <option class="dropdown-link choose-bckgrnd" value="sea">Sea</option>
-                        <option class="dropdown-link choose-bckgrnd" value="city">City</option>
-                    </select>
+                <li class="dropdown-list"  id="drop-background"><span class="dropdown-link" id="drop-background-btn">Choose background</span>
+                    <ul class="dropdown-container-level2" id="drop-background-list">
+                        <li class="dropdown-link-background choose-bckgrnd" data-back="mountain"><a class="" href="#">Mountain</a></li>
+                        <li class="dropdown-link-background choose-bckgrnd" data-back="sea"><a class="" href="#">Sea</a></li>
+                        <li class="dropdown-link-background choose-bckgrnd" data-back="city"><a class="" href="#">City</a></li>
+                    </ul>
                 </li>
             </ul>             
         </nav>

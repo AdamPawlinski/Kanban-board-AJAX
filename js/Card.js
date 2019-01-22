@@ -23,11 +23,11 @@ function Card(id, name) {
 			self.changeCard();
 		});
 
-		dropdown(cardButton, cardNavContainer);
+		dropdown(cardButton, cardNavContainer, cardNav);
 
 		cardColor.on('change', function() {
-			var color = $('#card-color').val();
-			self.css('background-color', color);
+			var color = $('#card-color', this).val();
+			$(this).parents('.card').css('background-color', color);
 		});
 
 		card.hover(
@@ -69,17 +69,17 @@ Card.prototype = {
 	},
 	changeCard: function () {
 		var self = this;
-		var cardName = prompt('Enter new card name');	
+		var cardName = prompt('Enter new card name');
 		$.ajax({
 			url: prefixURL + baseUrl + '/card/' + self.id,
 			method: 'PUT',
 			data: {
-				id: self.id,
-				name: cardName 
+				name: cardName
 			},
 			success: function(response){
-				self.element;
+				self.element.children('.card-description').text(cardName);			
 			}
-		})
+		})	
+		
 	}
 }

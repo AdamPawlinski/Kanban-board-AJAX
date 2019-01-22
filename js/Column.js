@@ -19,7 +19,7 @@ function Column(id, name) {
 		var columnColor = $('<li class="dropdown-list color-col"></li>');
 		var columnColorPicker = $('<label class="dropdown-link">column color<input type="color" id="col-color" value></label>');
 
-		dropdown(columnButton, columnNavContainer);		
+		dropdown(columnButton, columnNavContainer, columnNav);		
 
 		columnDelete.on('click', function() {
 			self.deleteColumn();
@@ -30,8 +30,8 @@ function Column(id, name) {
 		});
 
 		columnColor.on('change', function() {
-			var color = $('#col-color').val();
-			column.css('background-color', color);
+			var color = $('#col-color', this).val();
+			$(this).parents('.column').css('background-color', color);
 		});
 		
 
@@ -49,7 +49,7 @@ function Column(id, name) {
 						bootcamp_kanban_column_id: self.id
 				},
 				success: function(response) {
-							var card = new Card(response.id, cardName);
+					var card = new Card(response.id, cardName);
 					self.createCard(card);
 				}
 			});
@@ -90,20 +90,20 @@ Column.prototype = {
 		});
 	 },
 	columnChange: function() {
+		var self = this;
 		var columnName = prompt("Enter the new name of the column");
-		if (columnName === null) {
-			return
-		}
+		if (columnName === null) return;
 		event.preventDefault();
+
 		$.ajax({
 			url: prefixURL + baseUrl + '/column/' + self.id,
 			method: 'PUT',
 			data: {
-				id: self.id,
+				// id: self.id,
 				name: columnName
 			},
 			success: function(response) {					
-				self.response;
+				self.element.children('.column-title').text(columnName);
 			}
 		});
 	 }
